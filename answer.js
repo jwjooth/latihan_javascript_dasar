@@ -79,13 +79,68 @@ statistikNilai([]);
 // → null
 
 // soal 4
-function normalisasiNama(nama){
-  let name = nama.trim(" ");
-  console.log(name);
+function normalisasiNama(nama) {
+  if (/[^a-zA-Z\s]/.test(nama)) {
+    console.log("Nama tidak valid");
+  } else if (nama.trim()) {
+    let a = nama.trim().split(/\s+/);
+    let kataTerformat = a.map((kata) => {
+      return kata.charAt(0).toUpperCase() + kata.slice(1).toLowerCase();
+    });
+    console.log(kataTerformat.join(" "));
+  } else {
+    console.log("Nama tidak valid");
+  }
 }
 
 normalisasiNama("  budi   santoso  "); // → "Budi Santoso"
-normalisasiNama("RINA wati");          // → "Rina Wati"
-normalisasiNama("agus123");            // → "Nama tidak valid"
-normalisasiNama("  ");                 // → "Nama tidak valid"
-normalisasiNama("siti  nurbaya");      // → "Siti Nurbaya"
+normalisasiNama("RINA wati"); // → "Rina Wati"
+normalisasiNama("agus123"); // → "Nama tidak valid"
+normalisasiNama("  "); // → "Nama tidak valid"
+normalisasiNama("siti  nurbaya"); // → "Siti Nurbaya"
+
+// soal 5
+const produk = [
+  { id: 1, nama: "Laptop", kategori: "Elektronik", harga: 8000000, stok: 5 },
+  { id: 2, nama: "Buku JS", kategori: "Pendidikan", harga: 150000, stok: 0 },
+  { id: 3, nama: "Headphone", kategori: "Elektronik", harga: 750000, stok: 12 },
+  {
+    id: 4,
+    nama: "Meja Belajar",
+    kategori: "Furnitur",
+    harga: 1200000,
+    stok: 3,
+  },
+  { id: 5, nama: "Kabel HDMI", kategori: "Elektronik", harga: 85000, stok: 0 },
+  {
+    id: 6,
+    nama: "Kursi Ergonomis",
+    kategori: "Furnitur",
+    harga: 2500000,
+    stok: 7,
+  },
+];
+
+function produkTersedia(arr) {
+  if (
+    arr.filter((value) => {
+      if (value.stok !== 0) {
+        return true;
+      }
+    })
+  ) {
+  }
+}
+
+function totalNilaiInventori(arr) {}
+
+function ringkasanPerKategori(arr) {}
+
+produkTersedia(produk);
+// → ["Headphone", "Kursi Ergonomis", "Laptop", "Meja Belajar"]
+
+totalNilaiInventori(produk);
+// → 8000000*5 + 750000*12 + 1200000*3 + 2500000*7 = 60600000
+
+ringkasanPerKategori(produk);
+// → { Elektronik: 3, Pendidikan: 1, Furnitur: 2 }
