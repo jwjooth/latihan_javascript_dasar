@@ -122,19 +122,43 @@ const produk = [
 ];
 
 function produkTersedia(arr) {
-  if (
-    arr.filter((value) => {
-      if (value.stok !== 0) {
-        return true;
-      }
-    })
-  ) {
-  }
+  let a = arr.filter((value) => value.stok !== 0);
+  let b = a.map((data) => {
+    return data.nama;
+  });
+  console.log(b.sort());
 }
 
-function totalNilaiInventori(arr) {}
+function totalNilaiInventori(arr) {
+  console.log(
+    arr.reduce((acu, cur) => {
+      let value = cur.stok * cur.harga;
+      return acu + value;
+    }, 0),
+  );
+}
 
-function ringkasanPerKategori(arr) {}
+function ringkasanPerKategori(arr) {
+  let e = 0;
+  let p = 0;
+  let f = 0;
+  console.log(
+    arr.reduce((acu, cur) => {
+      if (cur.kategori === "Elektronik") {
+        e += 1;
+      } else if (cur.kategori === "Pendidikan") {
+        p += 1;
+      } else {
+        f += 1;
+      }
+      return {
+        Elektronik: e,
+        Pendidikan: p,
+        Furnitur: f,
+      };
+    }, 0),
+  );
+}
 
 produkTersedia(produk);
 // → ["Headphone", "Kursi Ergonomis", "Laptop", "Meja Belajar"]
