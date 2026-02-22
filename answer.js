@@ -168,3 +168,232 @@ totalNilaiInventori(produk);
 
 ringkasanPerKategori(produk);
 // → { Elektronik: 3, Pendidikan: 1, Furnitur: 2 }
+
+// soal 6
+console.log(x); // Baris 1
+var x = 10;
+console.log(x); // Baris 3
+
+function coba() {
+  // console.log(y); // Baris 6 kode ini tidak akan bisa dieksekusi dan error karena variable y dideklarasikan setelahnya
+  let y = 20;
+  console.log(y); // Baris 8
+}
+coba();
+
+let hasil = []; // menggunakan let agar bisa diakses untuk global scoped sehingga tidak perlu function scoped dll spt var
+for (let i = 0; i < 3; i++) {
+  hasil.push(function () {
+    return i;
+  });
+}
+console.log(hasil[0]()); // Diharapkan: 0, aktual: ???
+console.log(hasil[1]()); // Diharapkan: 1, aktual: ???
+console.log(hasil[2]()); // Diharapkan: 2, aktual: ???
+
+// soal 7
+function hitungPajakDeclaration(penghasilan) {
+  if (penghasilan < 60) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "5%",
+      jumlahPajak: penghasilan * 0.05,
+    });
+  } else if (penghasilan > 60 && penghasilan < 250) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "15%",
+      jumlahPajak: penghasilan * 0.15,
+    });
+  } else if (penghasilan > 250 && penghasilan < 500) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "25%",
+      jumlahPajak: penghasilan * 2.5,
+    });
+  } else {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "30%",
+      jumlahPajak: penghasilan * 0.3,
+    });
+  }
+}
+
+const hitungPajakExpression = function (penghasilan) {
+  if (penghasilan < 60) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "5%",
+      jumlahPajak: penghasilan * 0.05,
+    });
+  } else if (penghasilan > 60 && penghasilan < 250) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "15%",
+      jumlahPajak: penghasilan * 0.15,
+    });
+  } else if (penghasilan > 250 && penghasilan < 500) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "25%",
+      jumlahPajak: penghasilan * 2.5,
+    });
+  } else {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "30%",
+      jumlahPajak: penghasilan * 0.3,
+    });
+  }
+};
+
+const hitungPajakArrow = (penghasilan) => {
+  if (penghasilan < 60) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "5%",
+      jumlahPajak: penghasilan * 0.05,
+    });
+  } else if (penghasilan > 60 && penghasilan < 250) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "15%",
+      jumlahPajak: penghasilan * 0.15,
+    });
+  } else if (penghasilan > 250 && penghasilan < 500) {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "25%",
+      jumlahPajak: penghasilan * 2.5,
+    });
+  } else {
+    console.log({
+      penghasilan: penghasilan,
+      tarifPersen: "30%",
+      jumlahPajak: penghasilan * 0.3,
+    });
+  }
+};
+
+hitungPajakDeclaration(50);
+// → { penghasilan: 50, tarifPersen: "5%", jumlahPajak: 2.5 }
+
+hitungPajakExpression(300);
+// → { penghasilan: 300, tarifPersen: "25%", jumlahPajak: 75 }
+
+hitungPajakArrow(600);
+// → { penghasilan: 600, tarifPersen: "30%", jumlahPajak: 180 }
+
+// soal 8
+const karyawan = {
+  id: "EMP001",
+  nama: "Dewi Rahayu",
+  departemen: "Engineering",
+  gaji: 12000000,
+  skills: ["JavaScript", "React", "Node.js"],
+  aktif: true,
+};
+
+function tambahSkill(objKaryawan, skillBaru) {
+  let { skills } = objKaryawan;
+  for (let i = 0; i < skills.length; i++) {
+    if (!skills.includes(skillBaru)) {
+      skills.push(skillBaru);
+    }
+  }
+  console.log(objKaryawan);
+}
+
+function ringkasanKaryawan(objKaryawan) {
+  let { id, nama, departemen, skills } = objKaryawan;
+  console.log(`${id} ${nama} - ${departemen} (${skills.length} skills)`);
+}
+
+function karyawanKeArray(objKaryawan) {
+  let { id, nama, departemen, gaji, skills, aktif } = objKaryawan;
+  console.log(
+    Object.entries(objKaryawan)
+      .sort()
+      .filter(([key, value]) => !Array.isArray(value)),
+  );
+}
+
+tambahSkill(karyawan, "TypeScript");
+// → { ...karyawan, skills: ["JavaScript", "React", "Node.js", "TypeScript"] }
+
+tambahSkill(karyawan, "React");
+// → object yang sama persis (tidak berubah)
+
+ringkasanKaryawan(karyawan);
+// → "EMP001 Dewi Rahayu - Engineering (3 skills)"
+
+karyawanKeArray(karyawan);
+// → [["aktif", true], ["departemen", "Engineering"], ["gaji", 12000000], ["id", "EMP001"], ["nama", "Dewi Rahayu"]]
+
+// soal 9
+function faktorial(n) {
+  if (n < 0) return null;
+  if (n == 0 || n == 1) return 1;
+  return n * faktorial(n - 1);
+}
+
+function ratakan(arr) {
+  if (arr.length === 0) return [];
+  const [first, ...rest] = arr;
+  if (Array.isArray(first)) {
+    return [...ratakan(first), ...ratakan(rest)];
+  }
+  return [first, ...ratakan(rest)];
+}
+
+console.log(faktorial(5)); // → 120
+console.log(faktorial(0)); // → 1
+console.log(faktorial(-3)); // → null
+console.log(faktorial(10)); // → 3628800
+
+console.log(ratakan([1, [2, 3], [4, [5, [6]]]]));
+// → [1, 2, 3, 4, 5, 6]
+
+console.log(ratakan([1, [2, [3, [4, [5]]]]]));
+// → [1, 2, 3, 4, 5]
+
+console.log(ratakan([1, 2, 3]));
+// → [1, 2, 3]
+
+// soal 10
+function parseDataAPI(jsonString) {
+  try {
+    let result = JSON.parse(jsonString);
+    if (
+      typeof result === "object" &&
+      result !== null &&
+      !Array.isArray(result)
+    ) {
+      console.log(result);
+    } else {
+      console.error("Data bukan object");
+    }
+  } catch (error) {
+    console.error({
+      error: true,
+      message: "JSON tidak valid",
+      input: "ini bukan json",
+    });
+  } finally {
+    console.log("Proses parsing selesai");
+  }
+}
+
+parseDataAPI('{"nama":"Andi","usia":22}');
+// console: "Proses parsing selesai."
+// → { nama: "Andi", usia: 22 }
+
+parseDataAPI("[1, 2, 3]");
+// console: "Proses parsing selesai."
+// → throws Error("Data bukan object")  ← tangkap ini di luar jika perlu
+
+parseDataAPI("ini bukan json");
+// console: "Proses parsing selesai."
+// → { error: true, pesan: "JSON tidak valid", input: "ini bukan json" }
+
