@@ -142,3 +142,92 @@ let person = {
 };
 
 console.log(person.perkenalan());
+
+// soal 11
+let student = {
+  exam: 100,
+  get nilai() {
+    return this.exam;
+  },
+  set nilai(value) {
+    if (value > 0) {
+      this.exam = value;
+    } else {
+      return `Nilai tidak boleh < 0`;
+    }
+  },
+};
+
+student.nilai = 200;
+console.log(student.nilai);
+
+// soal 12
+let mahasiswa = {
+  nama: "jordan theovandy",
+  alamat: {
+    kota: "jakarta",
+    kodePos: 12345,
+  },
+};
+
+const {
+  alamat: { kota, kodePos },
+} = mahasiswa;
+
+console.log(`${kota} ${kodePos}`);
+
+// soal 13
+function systemExam(nilai) {
+  if (nilai >= 85) {
+    return "A";
+  } else if (nilai >= 70) {
+    return "B";
+  } else if (nilai >= 60) {
+    return "C";
+  } else if (nilai < 60) {
+    return "D";
+  }
+}
+
+console.log(systemExam(90));
+
+// soal 14
+function swicthCase(day) {
+  switch (day) {
+    case 1:
+      return "Senin";
+      break;
+    case 2:
+      return "Selasa";
+      break;
+    case 3:
+      return "Rabu";
+      break;
+    case 4:
+      return "Kamis";
+      break;
+    case 5:
+      return "Jumat";
+      break;
+    case 6:
+      return "Sabtu";
+      break;
+    case 7:
+      return "Minggu";
+      break;
+    default:
+      break;
+  }
+}
+
+console.log(swicthCase(7));
+
+// soal 15
+let n = 5;
+for (let i = 1; i <= n; i++) {
+  let row = "";
+  for (let j = 1; j <= i; j++) {
+    row += "*";
+  }
+  console.log(row);
+}
