@@ -231,3 +231,71 @@ for (let i = 1; i <= n; i++) {
   }
   console.log(row);
 }
+
+// soal 16
+function fizzBuzz() {
+  for (let i = 1; i <= 50; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("FizzBuzz");
+    } else if (i % 5 === 0) {
+      console.log("Buzz");
+    } else if (i % 3 === 0) {
+      console.log("Fizz");
+    } else {
+      console.log(i);
+    }
+  }
+}
+
+fizzBuzz();
+
+// soal 17
+outerloop: for (let i = 1; i <= 5; i++) {
+  innerloop: for (let j = 1; j <= 5; j++) {
+    if (i === 3 && j === 3) {
+      console.log("breaking out of both loops");
+      break outerloop;
+    }
+    console.log(`i: ${i}, j: ${j}`);
+  }
+}
+
+// soal 18
+let dataSiswa = {
+  name: "roger rejeki mampu",
+  age: 20,
+  major: "it",
+};
+
+let nilaiSiswa = [100, 90, 80, 70, 60, 50];
+
+for (const key in dataSiswa) {
+  console.log(key + " " + dataSiswa[key]);
+}
+
+for (const element of nilaiSiswa) {
+  console.log(element);
+}
+
+// soal 19
+function restParams(...value) {
+  let total = 0;
+  for (let i = 0; i < value.length; i++) {
+    total += value[i];
+  }
+  return total;
+}
+
+console.log(restParams(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
+// soal 20
+function spreadSyntax(...value) {
+  let total = 0;
+  for (let i = 0; i < value.length; i++) {
+    total += value[i];
+  }
+  return total;
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(spreadSyntax(...arr));
