@@ -299,3 +299,60 @@ function spreadSyntax(...value) {
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log(spreadSyntax(...arr));
+
+// soal 21
+function faktorial(n) {
+  if (n === 1) return 1;
+  return n * faktorial(n - 1);
+}
+
+console.log(faktorial(5));
+
+// soal 22
+function* generator() {
+  for (let i = 1; i <= 20; i++) {
+    if (i % 2 == 0) {
+      yield i;
+    }
+  }
+}
+
+const a = generator();
+for (const e of a) {
+  console.log(e);
+}
+
+// soal 23
+function buatCounter() {
+  let counter = 0;
+  function increment() {
+    counter++;
+    return counter;
+  }
+  return increment;
+}
+
+const counting = buatCounter();
+console.log(counting());
+console.log(counting());
+console.log(counting());
+console.log(counting());
+console.log(counting());
+
+// soal 24
+function anonymous(func) {
+  return func("jowjo");
+}
+
+const sayHello = (name) => {
+  return `hellow ${name}`;
+};
+
+console.log(anonymous(sayHello));
+
+// soal 25
+function diskon(harga, persen = 10) {
+  return harga - harga * (persen / 100);
+}
+
+console.log(diskon(100));
