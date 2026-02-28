@@ -356,3 +356,77 @@ function diskon(harga, persen = 10) {
 }
 
 console.log(diskon(100));
+
+// soal 26
+const objNested = {
+  username: "jowjo",
+  age: 21,
+  address: {
+    city: "jakarta",
+    country: "indonesia",
+  },
+};
+
+const jwj = objNested?.address?.street;
+console.log(jwj);
+
+// soal 27
+const person2 = {
+  name: "Milton Friedman",
+  wasRight: true,
+};
+
+// with (person2) {
+//   // name and wasRight are treated as local variables here
+//   console.log(name);      // Output: Milton Friedman
+//   console.log(wasRight);  // Output: true
+// }
+
+// soal 28
+function nanHandling(value, params) {
+  if (!Number.isNaN(value) && !Number.isNaN(params)) {
+    return Number(value) + Number(params);
+  } else {
+    return "Data Tidak Valid";
+  }
+}
+
+console.log(nanHandling("j", 1));
+
+// soal 29
+function validate(age) {
+  return age < 18 ? "Anak" : age > 18 && age < 60 ? "Dewasa" : "Lansia";
+}
+
+console.log(validate(27));
+
+// soal 30
+function cashier(products) {
+  let total = 0;
+  let diskon = 0;
+  let total_bayar= 0;
+
+  for (const key in product) {
+    const element = product[key];
+    total += element.price;
+  }
+  if (total > 100000) {
+    diskon = total * 0.1;
+  }
+  total_bayar = total - diskon;
+  return {
+    Total: total,
+    Diskon: diskon,
+    Total_Bayar: total_bayar,
+  };
+}
+
+const product = [
+  { name: "shoes", price: 100000 },
+  { name: "swallow", price: 15000 },
+  { name: "ball", price: 2000 },
+  { name: "television", price: 200000 },
+  { name: "car", price: 500000 },
+];
+
+console.log(cashier(product));
